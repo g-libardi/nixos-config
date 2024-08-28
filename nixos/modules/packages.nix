@@ -11,6 +11,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    gnome.nautilus
+    nwg-look
   #  wget
   ];
 

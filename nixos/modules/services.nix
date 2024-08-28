@@ -1,8 +1,17 @@
 { config, pkgs, ... }:
 
 {
+
+  # network manager
+  networking.networkmanager.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -21,5 +30,5 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 }
