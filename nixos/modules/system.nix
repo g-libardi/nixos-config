@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  
+  # system config location
+  environment.variables = {
+    U_NIX_CONFIG = ./. + "";
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

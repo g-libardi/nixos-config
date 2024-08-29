@@ -10,11 +10,14 @@
 
   home.packages = with pkgs; [
     neovim
-    git
     gh
     vscode-fhs
     foot
-    ulauncher
+    swaybg
+    swayosd
+    steam
+    walker
+    qutebrowser
   ];
   
 
