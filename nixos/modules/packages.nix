@@ -15,6 +15,8 @@
     nwg-look
     lxqt.lxqt-policykit
     udiskie
+    networkmanagerapplet
+    wlogout
   #  wget
   ];
 

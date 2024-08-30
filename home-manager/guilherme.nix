@@ -25,6 +25,7 @@
     qutebrowser
     nerdfonts
     tofi
+    ticktick
   ];
   
 
@@ -34,9 +35,6 @@
     source = ${config.home.homeDirectory}/nixos-config/home-manager/hypr/hyprland.conf
     $U_NIX_CONFIG = ${builtins.getEnv "U_NIX_CONFIG"}
   ";
-  wayland.windowManager.hyprland.plugins = [
-    # pkgs.hyprlandPlugins.hyprbars
-  ];
   programs.waybar.enable = true;  
 
 

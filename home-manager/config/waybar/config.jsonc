@@ -17,8 +17,8 @@
     "memory",
     "cpu",
     "network",
-    "custom/powermenu",
-    "tray"
+    "tray",
+    "custom/powermenu"
   ],
   "custom/launcher": {
     "format": " ",
