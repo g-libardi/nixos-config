@@ -4,8 +4,9 @@
   
   # system config location
   environment.variables = {
-    U_NIX_CONFIG = ./. + "";
+    U_NIX_CONFIG = "/home/guilherme/nixos-config";
   };
+  U_NIX_CONFIG = "/home/guilherme/nixos-config";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

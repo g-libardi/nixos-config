@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@inputs:
 
 {
   imports = [
-    ./dotfile_manager.nix
+    # ./dotfile_manager.nix
   ];
 
   # home-manager stuff
@@ -30,19 +30,12 @@
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.extraConfig = "
     source = ${config.home.homeDirectory}/nixos-config/home-manager/hypr/hyprland.conf
+    $U_NIX_CONFIG = ${config.U_NIX_CONFIG}
   ";
   wayland.windowManager.hyprland.plugins = [
     # pkgs.hyprlandPlugins.hyprbars
   ];
   programs.waybar.enable = true;  
-  
-  
-  # gtk theme
-  # gtk = {
-  #   enable = true;
-  #   theme.name = "Adwaita";
-  #   theme.package = pkgs.gnome.gnome-themes-extra;
-  # };
 
 
   programs.git = {

@@ -1,8 +1,19 @@
-{}:
+{ home }:
 let
-  dotfilesSource = ./config;
+  thisDir = "${builtins.getEnv "HOME"}/nixos-config/home-manager";
+  dotfilesSource = thisDir + "/config";
   dotfilesTarget = ~/.config;
-  dotfiles = builtins.readDir dotfilesSource;
-  dirs = builtins.filter (name: builtins.pathExists (dotfilesSource + "/" + name) && builtins.isDir (dotfilesSource + "/" + name)) (builtins.attrNames dotfiles);
+  dotfileNames = builtins.readDir dotfilesSource;
+  # dotfiles = builtins.map (name: 
+  # ("${thisDir}/${name}")
+  
+  # ) 
+  # (builtins.attrNames dotfileNames);
 in
-  dirs
+map (name: {
+  home.file."${dotfilesTarget}/${name}" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${thisDir}/${name}";
+    recursive = true;
+  }
+}) dotfileNames
+  
