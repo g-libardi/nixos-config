@@ -23,6 +23,7 @@
     steam
     walker
     qutebrowser
+    nerdfonts
   ];
   
 
