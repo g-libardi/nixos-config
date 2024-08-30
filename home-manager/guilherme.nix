@@ -1,9 +1,6 @@
 { config, pkgs, ... }@inputs:
 
 {
-  imports = [
-    # ./dotfile_manager.nix
-  ];
 
   # home-manager stuff
   home.username = "guilherme";
@@ -11,6 +8,9 @@
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 
+  imports = [
+    ./dotfile_manager.nix
+  ];
 
   home.packages = with pkgs; [
     neovim
@@ -30,7 +30,7 @@
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.extraConfig = "
     source = ${config.home.homeDirectory}/nixos-config/home-manager/hypr/hyprland.conf
-    $U_NIX_CONFIG = ${config.U_NIX_CONFIG}
+    $U_NIX_CONFIG = ${builtins.getEnv "U_NIX_CONFIG"}
   ";
   wayland.windowManager.hyprland.plugins = [
     # pkgs.hyprlandPlugins.hyprbars
@@ -47,10 +47,10 @@
   
 
   # neovim config
-  home.file.".config/nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
-    recursive = true;
-  };
+  # home.file.".config/nvim" = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-config/home-manager/nvim";
+  #   recursive = true;
+  # };
 
 
 }

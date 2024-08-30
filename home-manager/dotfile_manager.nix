@@ -1,19 +1,19 @@
-{ home }:
+{ home, config, ... }:
 let
-  thisDir = "${builtins.getEnv "HOME"}/nixos-config/home-manager";
-  dotfilesSource = thisDir + "/config";
-  dotfilesTarget = ~/.config;
-  dotfileNames = builtins.readDir dotfilesSource;
-  # dotfiles = builtins.map (name: 
-  # ("${thisDir}/${name}")
-  
-  # ) 
-  # (builtins.attrNames dotfileNames);
+  thisDir = "${config.home.homeDirectory}/nixos-config/home-manager";
+  dotfilesSource = "${thisDir}/config";
+  dotfilesTarget = ".config";
+  dotfileNames = builtins.attrNames (builtins.readDir ./config);
 in
-map (name: {
-  home.file."${dotfilesTarget}/${name}" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${thisDir}/${name}";
-    recursive = true;
-  }
-}) dotfileNames
-  
+{
+  home.file = builtins.listToAttrs (map (dotname: {
+    name = "${dotfilesTarget}/${dotname}"; 
+    
+    value = {
+      source = config.lib.file.mkOutOfStoreSymlink "${dotfilesSource}/${dotname}";
+      recursive = true;
+    };
+  }) dotfileNames);
+}
+#
+# 
