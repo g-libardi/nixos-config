@@ -24,6 +24,7 @@
     walker
     qutebrowser
     nerdfonts
+    tofi
   ];
   
 
