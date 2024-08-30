@@ -18,6 +18,9 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [
+            ./home-manager/shared.nix
+          ];
           home-manager.users.guilherme = ./home-manager/guilherme.nix;
         }
       ];
