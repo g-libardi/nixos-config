@@ -13,6 +13,7 @@
     vim
     gnome.nautilus
     nwg-look
+    lxqt.lxqt-policykit
   #  wget
   ];
 

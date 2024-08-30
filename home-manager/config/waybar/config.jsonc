@@ -4,8 +4,8 @@
   "modules-left": [
     "custom/launcher",
     "temperature",
-    "mpd",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "mpd"
     // "custom/cava-internal"
   ],
   "modules-center": [
