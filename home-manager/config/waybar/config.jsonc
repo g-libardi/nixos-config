@@ -1,11 +1,12 @@
 {
   "layer": "top",
-  "position": "top",
+  "position": "bottom",
   "modules-left": [
     "custom/launcher",
     "temperature",
     "mpd",
-    "custom/cava-internal"
+    "hyprland/workspaces"
+    // "custom/cava-internal"
   ],
   "modules-center": [
     "clock"
