@@ -15,5 +15,3 @@ in
     };
   }) dotfileNames);
 }
-#
-# 
