@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./dotfile_manager.nix
+  ];
+
   # home-manager stuff
   home.username = "guilherme";
   home.homeDirectory = "/home/guilherme";
@@ -15,6 +19,7 @@
     foot
     swaybg
     swayosd
+    swaynotificationcenter
     steam
     walker
     qutebrowser
