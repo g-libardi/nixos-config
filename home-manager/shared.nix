@@ -16,9 +16,9 @@
   ];
   
   # hyprland config
-  wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.extraConfig = "
-    source = ${config.home.homeDirectory}/nixos-config/home-manager/hypr/hyprland.conf
-  ";
+  # wayland.windowManager.hyprland.enable = true;
+  # wayland.windowManager.hyprland.extraConfig = "
+  #   source = ${config.home.homeDirectory}/nixos-config/home-manager/hypr/hyprland.conf
+  # ";
   programs.waybar.enable = true;  
 }
