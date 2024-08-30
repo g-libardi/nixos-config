@@ -6,9 +6,6 @@
     isNormalUser = true;
     description = "Guilherme";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
   };
 
 }
