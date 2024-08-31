@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    CPU_ENERGY_PERF_POLICY_ON_AC="performance";
+  };
+
   # Enable the hyprland NixOS module
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
