@@ -22,9 +22,9 @@
   ],
   "custom/launcher": {
     "format": " ",
-    "on-click": "walker",
-    "on-click-middle": "exec default_wall",
-    "on-click-right": "exec wallpaper_random",
+    "on-click": "",
+    "on-click-middle": "",
+    "on-click-right": "",
     "tooltip": false
   },
   "custom/cava-internal": {
@@ -42,8 +42,8 @@
     "tooltip": false
   },
   "clock": {
-    "interval": 1,
-    "format": "{:%I:%M %p  %A %b %d}",
+    // "interval": 1,
+    "format": "{:%H:%M}",
     "tooltip": true,
     "tooltip-format": "{=%A; %d %B %Y}\n<tt>{calendar}</tt>"
   },
@@ -82,7 +82,7 @@
   },
   "custom/powermenu": {
     "format": "",
-    "on-click": "pkill rofi || ~/.config/rofi/powermenu/type-3/powermenu.sh",
+    "on-click": "wlogout",
     "tooltip": false
   },
   "tray": {
