@@ -22,7 +22,7 @@
   ],
   "custom/launcher": {
     "format": " ",
-    "on-click": "",
+    "on-click": "foot sudo nixos-rebuild switch",
     "on-click-middle": "",
     "on-click-right": "",
     "tooltip": false
