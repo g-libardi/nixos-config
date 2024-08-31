@@ -5,6 +5,7 @@
   # system config location
   environment.variables = {
     U_NIX_CONFIG = "/home/guilherme/nixos-config";
+    NIXOS_OZONE_WL = 1;
   };
 
   # Bootloader.
