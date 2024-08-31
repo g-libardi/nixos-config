@@ -13,6 +13,7 @@
     swaynotificationcenter
     nerdfonts
     tofi
+    pamixer
   ];
   
   # hyprland config

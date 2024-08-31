@@ -32,7 +32,7 @@
     "tooltip": false
   },
   "pulseaudio": {
-    "scroll-step": 1,
+    "scroll-step": 4,
     "format": "{icon} {volume}%",
     "format-muted": "󰖁 Muted",
     "format-icons": {
