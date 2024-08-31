@@ -12,6 +12,7 @@
     steam
     qutebrowser
     ticktick
+    microsoft-edge
   ];
 
   programs.git = {
