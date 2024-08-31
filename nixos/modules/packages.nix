@@ -17,6 +17,7 @@
     udiskie
     networkmanagerapplet
     wlogout
+    swww
   #  wget
   ];
 

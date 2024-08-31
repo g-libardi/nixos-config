@@ -4,6 +4,7 @@
   # Enable the hyprland NixOS module
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
+  services.hypridle.enable = true;
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
