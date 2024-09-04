@@ -11,9 +11,11 @@
     foot
     swaybg
     swaynotificationcenter
+    hyprshot
     nerdfonts
     tofi
     pamixer
+    haruna
   ];
   
   # hyprland config
