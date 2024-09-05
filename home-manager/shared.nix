@@ -24,4 +24,6 @@
   #   source = ${config.home.homeDirectory}/nixos-config/home-manager/hypr/hyprland.conf
   # ";
   programs.waybar.enable = true;  
+  # services.kdeconnect.enable = true;
+  # services.kdeconnect.indicator = true;
 }
