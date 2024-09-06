@@ -5,6 +5,7 @@
   programs.firefox.enable = true;
   programs.kdeconnect.enable = true;
   programs.dconf.enable = true;
+  programs.nix-ld.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -23,6 +24,7 @@
     clipse
     wl-clipboard
     librewolf
+
   #  wget
   ];
 
