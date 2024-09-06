@@ -21,6 +21,8 @@
     wlogout
     swww
     clipse
+    wl-clipboard
+    librewolf
   #  wget
   ];
 
