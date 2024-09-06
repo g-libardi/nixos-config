@@ -18,7 +18,8 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
+-- Luarocks
+-- opts.rocks.enabled = false
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -32,4 +33,5 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
 
