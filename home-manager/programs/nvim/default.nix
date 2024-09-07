@@ -1,11 +1,19 @@
 { pkgs }:
-pkgs.stdenv.mkDerivation {
-    name = "libardi-nvim";
+pkgs.stdenv.mkDerivation rec {
     pname = "nvim";
     version = "1.0.0";
+    name = "libardi-nvim-${version}";
 
     buildInputs = [
-        pkgs.neovim
+        (pkgs.neovim.overrideAttrs (oldAttrs: {
+            version = "v0.10.1";  # Replace with the desired version
+            src = pkgs.fetchFromGitHub {
+                owner = "neovim";
+                repo = "neovim";
+                rev = "v0.10.1";  # Match the desired version here
+                sha256 = "sha256-OsHIacgorYnB/dPbzl1b6rYUzQdhTtsJYLsFLJxregk=";  # You will need to fill in the hash
+            };
+        }))
         pkgs.python3
         pkgs.wget
         pkgs.unzip
