@@ -20,6 +20,7 @@ let
         pkgs.git
         pkgs.wl-clipboard
         pkgs.nodePackages_latest.nodejs
+        pkgs.fd
     ];
 
     runtimeDepsDirs = pkgs.lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") runtimeDeps);

@@ -9,6 +9,9 @@ vim.keymap.set('n', '<leader><Return>', vim.lsp.buf.code_action, { desc = 'Show 
 vim.keymap.set('n', '<leader>g', vim.lsp.buf.definition, { desc = 'Go to definition' })
 vim.keymap.set('n', '<leader><Tab>', '<cmd>Neotree toggle<cr>', { desc = 'Toggle neotree visibility' })
 
+-- show sessions in telescope
+vim.keymap.set('n', '<leader>s', '<cmd>Telescope persisted<CR>', { desc = 'Show session from telescope' })
+
 -- window navigation
 vim.keymap.set('n', '<A-k>', ':wincmd k<CR>')
 vim.keymap.set('n', '<A-j>', ':wincmd j<CR>')
