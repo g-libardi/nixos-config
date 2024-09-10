@@ -28,6 +28,8 @@ require("lazy").setup({
         { import = 'plugins' },
     },
     -- Configure any other settings here. See the documentation for more details.
+    -- install missing on startup
+    missing = true,
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "tokyonight-storm" } },
     -- automatically check for plugin updates

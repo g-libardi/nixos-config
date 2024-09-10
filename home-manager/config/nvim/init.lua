@@ -13,3 +13,4 @@ vim.g.loaded_netrwPlugin = 1
 
 require("keymaps")
 require("config.lazy")
+require("config.startup")
