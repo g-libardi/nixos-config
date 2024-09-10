@@ -9,6 +9,7 @@
 
     # Docker
     virtualisation.docker.enable = true;
+    users.extraGroups.docker.members = [ "guilherme" ];
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -27,8 +28,6 @@
         clipse
         wl-clipboard
         librewolf
-
-        #  wget
     ];
 
     # Some programs need SUID wrappers, can be configured further or are

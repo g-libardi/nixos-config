@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     foot
+    tmux
     swaybg
     swaynotificationcenter
     hyprshot
