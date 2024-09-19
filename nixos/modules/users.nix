@@ -5,7 +5,7 @@
   users.users.guilherme = {
     isNormalUser = true;
     description = "Guilherme";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "plugdev" ];
   };
 
 }

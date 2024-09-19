@@ -4,7 +4,7 @@ vim.g.maplocalleader = " "
 
 vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope find_files<cr>', { desc = 'Find files with telescope' })
 vim.keymap.set('n', '<C-leader>', '<cmd>Telescope<cr>', { desc = 'Open telescope' })
-vim.keymap.set('n', '<S-leader>', vim.lsp.buf.hover, { desc = 'See LSP hover information' })
+vim.keymap.set('n', '<leader>h', vim.lsp.buf.hover, { desc = 'See LSP hover information' })
 vim.keymap.set('n', '<leader><Return>', vim.lsp.buf.code_action, { desc = 'Show code actions' })
 vim.keymap.set('n', '<leader>g', vim.lsp.buf.definition, { desc = 'Go to definition' })
 vim.keymap.set('n', '<leader><Tab>', '<cmd>Neotree toggle<cr>', { desc = 'Toggle neotree visibility' })
