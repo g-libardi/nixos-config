@@ -11,6 +11,13 @@
     virtualisation.docker.enable = true;
     users.extraGroups.docker.members = [ "guilherme" ];
 
+    # ADB
+    programs.adb.enable = true;
+    users.extraGroups.adbusers.members = [ "guilherme" ];
+    users.extraGroups.plugdev.members = [ "guilherme" ];
+    users.extraGroups.kvm.members = [ "guilherme" ];
+    services.udev.packages = [ pkgs.android-udev-rules ];
+
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
