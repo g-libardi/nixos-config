@@ -9,13 +9,13 @@
 
     # Docker
     virtualisation.docker.enable = true;
-    users.extraGroups.docker.members = [ "guilherme" ];
+    users.extraGroups.docker.members = [ "libardi" ];
 
     # ADB
     programs.adb.enable = true;
-    users.extraGroups.adbusers.members = [ "guilherme" ];
-    users.extraGroups.plugdev.members = [ "guilherme" ];
-    users.extraGroups.kvm.members = [ "guilherme" ];
+    users.extraGroups.adbusers.members = [ "libardi" ];
+    users.extraGroups.plugdev.members = [ "libardi" ];
+    users.extraGroups.kvm.members = [ "libardi" ];
     services.udev.packages = [ pkgs.android-udev-rules ];
 
     # Allow unfree packages
@@ -35,6 +35,7 @@
         clipse
         wl-clipboard
         librewolf
+        kitty
     ];
 
     # Some programs need SUID wrappers, can be configured further or are

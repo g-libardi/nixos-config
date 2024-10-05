@@ -46,7 +46,7 @@
   security.polkit.enable = true;
 
   # Install OBS Studio with droidcam-obs
-  users.users.guilherme = {
+  users.users.libardi = {
     packages = with pkgs; [
       # ...
       (wrapOBS {

@@ -1,8 +1,8 @@
 { config, pkgs, ... }@inputs:
 
 {
-  home.username = "guilherme";
-  home.homeDirectory = "/home/guilherme";
+  home.username = "libardi";
+  home.homeDirectory = "/home/libardi";
   home.stateVersion = "24.05";
 
   home.packages = [
@@ -12,6 +12,7 @@
     pkgs.qutebrowser
     pkgs.ticktick
     pkgs.microsoft-edge
+    pkgs.discord
     (import ./programs/nvim { inherit pkgs; }) 
   ];
 
@@ -19,6 +20,6 @@
   programs.git = {
     enable = true;
     userName = "g-libardi";
-    userEmail = "guilhermelibardi@hotmail.com";
+    userEmail = "contato@libardi.dev.br";
   };
 }
