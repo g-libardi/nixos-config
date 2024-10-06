@@ -35,7 +35,7 @@
 
 
 
-  # TEMPORATY!
+  # WARN: TEMPORATY!
   # Virtual cam settings: see https://wiki.nixos.org/wiki/OBS_Studio#Using_the_Virtual_Camera
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback

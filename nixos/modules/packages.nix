@@ -25,7 +25,7 @@
     # $ nix search wget
     environment.systemPackages = with pkgs; [
         vim
-        gnome.nautilus
+        nautilus
         nwg-look
         lxqt.lxqt-policykit
         udiskie

@@ -8,6 +8,10 @@
     NIXOS_OZONE_WL = 1;
   };
 
+  # for steam
+  hardware.graphics.enable32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -15,7 +19,7 @@
   # Enable nix-command and flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -26,7 +30,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "America/Cuiaba";
+  time.timeZone = "America/Sao_Paulo";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

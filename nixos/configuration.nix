@@ -11,7 +11,14 @@
             ./modules/packages.nix
             ./modules/gui.nix
             ./modules/development.nix
+            ./modules/nvidia.nix
         ];
+
+    # custom alias for system rebuild
+    environment.shellAliases = {
+        rebuild = "sudo nixos-rebuild switch --flake /home/libardi/nixos-config/.";
+    };
+
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
