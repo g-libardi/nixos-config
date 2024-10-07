@@ -12,6 +12,7 @@
             ./modules/gui.nix
             ./modules/development.nix
             ./modules/nvidia.nix
+            ./modules/firewall.nix
         ];
 
     # custom alias for system rebuild
