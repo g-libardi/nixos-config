@@ -2,9 +2,11 @@
 
 {
     imports =
+        let
+        in 
         [   
             # Include the results of the hardware scan.
-            ./hardware-configuration.nix
+            ./hardware/desktop/hardware-configuration.nix
             ./modules/system.nix
             ./modules/services.nix
             ./modules/users.nix
@@ -13,6 +15,7 @@
             ./modules/development.nix
             ./modules/nvidia.nix
             ./modules/firewall.nix
+            ./programs/games.nix
         ];
 
     # custom alias for system rebuild
