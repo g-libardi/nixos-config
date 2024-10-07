@@ -1,4 +1,6 @@
-rec {
-  user = "libardi";
-  home = "/home/${user}";
+{
+  g = rec {
+    user = "libardi";
+    home = "/home/${user}";
+  };
 }

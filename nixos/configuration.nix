@@ -1,21 +1,18 @@
 { config, pkgs, ... }:
 
 {
-    imports =
-        let
-        in 
-        [   
-            # Include the results of the hardware scan.
-            ./hardware/desktop/hardware-configuration.nix
-            ./modules/system.nix
-            ./modules/services.nix
-            ./modules/users.nix
-            ./modules/packages.nix
-            ./modules/gui.nix
-            ./modules/development.nix
-            ./modules/nvidia.nix
-            ./modules/firewall.nix
-            ./programs/games.nix
+    imports = [
+        # Include the results of the hardware scan.
+        ./hardware/desktop/hardware-configuration.nix
+        ./modules/system.nix
+        ./modules/services.nix
+        ./modules/users.nix
+        ./modules/packages.nix
+        ./modules/gui.nix
+        ./modules/development.nix
+        ./modules/nvidia.nix
+        ./modules/firewall.nix
+        ./programs/games.nix
         ];
 
     # custom alias for system rebuild

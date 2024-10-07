@@ -18,12 +18,6 @@
       makeNixosConfiguration = hn: {
         ${hn} = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = let 
-            g = import ./globals.nix;
-            g.hostName = hn;
-          in {
-            g = g;
-          };
 
           modules = [
             ./globals.nix
@@ -44,10 +38,17 @@
       # Use fold to accumulate all attribute sets into a single one
       combinedConfigurations = lib.foldl' (acc: value: lib.attrsets.recursiveUpdate acc (makeNixosConfiguration value)) {} hostNames;
     in 
-    {
-      nixosConfigurations = combinedConfigurations;
+      {
+      nixosConfigurations = combinedConfigurations // {
+        specialArgs = {
+          g = rec { 
+            user = "libardi";
+            home = "/home/${user}";
+          };
+        };
       };
-
+    };
+}
       # nixosConfigurations = {
       #   specialArgs = {
       #     g = import ./globals.nix;
@@ -70,4 +71,4 @@
       #   };
       # };
     # };
-}
+# }
