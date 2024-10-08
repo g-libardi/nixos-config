@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, g, ... }:
 
 {
   
@@ -19,7 +19,7 @@
   # Enable nix-command and flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  networking.hostName = "desktop"; # Define your hostname.
+  networking.hostName = g.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

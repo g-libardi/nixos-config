@@ -25,6 +25,7 @@
     # $ nix search wget
     environment.systemPackages = with pkgs; [
         vim
+	neovim
         nautilus
         nwg-look
         lxqt.lxqt-policykit

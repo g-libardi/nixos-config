@@ -1,18 +1,19 @@
-{ config, pkgs, ... }:
+{ config, pkgs, g, ... }:
 
 {
     imports = [
         # Include the results of the hardware scan.
-        ./hardware/desktop/hardware-configuration.nix
+        ./hardware/${g.hostName}/hardware-configuration.nix
         ./modules/system.nix
         ./modules/services.nix
         ./modules/users.nix
         ./modules/packages.nix
         ./modules/gui.nix
         ./modules/development.nix
-        ./modules/nvidia.nix
+        # ./modules/nvidia.nix
         ./modules/firewall.nix
-        ./programs/games.nix
+        # ./programs/games.nix
+        # ./modules/cowsay/default.nix
         ];
 
     # custom alias for system rebuild

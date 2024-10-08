@@ -43,6 +43,11 @@
   services.hypridle.enable = true;
   programs.waybar.enable = true;
   programs.foot.enable = true;
+  environment.systemPackages = [ 
+        pkgs.hyprshot  # screenshot tool
+        pkgs.eww  # status bar
+  ];
+  
   # define environment variable for terminal
   environment.variables = { TERM = "foot"; TERMINAL = "foot"; };
 

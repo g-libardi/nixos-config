@@ -19,9 +19,13 @@
         ${hn} = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
+          specialArgs = {
+            g = import ./globals.nix // { hostName = hn; };
+          };
+
           modules = [
-            ./globals.nix
             ./nixos/configuration.nix
+            # ./lib/mkOutOfStoreSymLink.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -39,36 +43,6 @@
       combinedConfigurations = lib.foldl' (acc: value: lib.attrsets.recursiveUpdate acc (makeNixosConfiguration value)) {} hostNames;
     in 
       {
-      nixosConfigurations = combinedConfigurations // {
-        specialArgs = {
-          g = rec { 
-            user = "libardi";
-            home = "/home/${user}";
-          };
-        };
-      };
+      nixosConfigurations = combinedConfigurations;
     };
 }
-      # nixosConfigurations = {
-      #   specialArgs = {
-      #     g = import ./globals.nix;
-      #   };
-      #   desktop = nixpkgs.lib.nixosSystem {
-      #     system = "x86_64-linux";
-      #     modules = [
-      #       ./globals.nix
-      #       ./nixos/configuration.nix
-      #       home-manager.nixosModules.home-manager
-      #       {
-      #         home-manager.useGlobalPkgs = true;
-      #         home-manager.useUserPackages = true;
-      #         home-manager.sharedModules = [
-      #           ./home-manager/shared.nix
-      #         ];
-      #         home-manager.users.libardi = ./home-manager/libardi.nix;
-      #       }
-      #     ];
-      #   };
-      # };
-    # };
-# }
