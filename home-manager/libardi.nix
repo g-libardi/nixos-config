@@ -22,4 +22,6 @@
     userName = "g-libardi";
     userEmail = "contato@libardi.dev.br";
   };
+
+  home.sessionVariables.PATH = "${config.home.sessionVariables.PATH}:$HOME/.cargo/bin";
 }

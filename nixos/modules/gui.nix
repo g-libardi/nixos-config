@@ -44,8 +44,9 @@
   programs.waybar.enable = true;
   programs.foot.enable = true;
   environment.systemPackages = [ 
+        pkgs.libnotify  # notification daemon
+        pkgs.hypridle  # idle manager
         pkgs.hyprshot  # screenshot tool
-        pkgs.eww  # status bar
   ];
   
   # define environment variable for terminal

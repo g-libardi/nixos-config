@@ -5,5 +5,6 @@
         rustup
         uv
         bun
+        gcc
     ];
 }
