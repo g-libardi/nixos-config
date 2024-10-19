@@ -21,6 +21,7 @@ let
         pkgs.wl-clipboard
         pkgs.nodePackages_latest.nodejs
         pkgs.fd
+        pkgs.ripgrep
     ];
 
     runtimeDepsDirs = pkgs.lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") runtimeDeps);

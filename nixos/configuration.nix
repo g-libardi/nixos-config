@@ -10,7 +10,7 @@
         ./modules/packages.nix
         ./modules/gui.nix
         ./modules/development.nix
-        # ./modules/nvidia.nix
+        ./modules/nvidia.nix
         ./modules/firewall.nix
         # ./programs/games.nix
         # ./modules/cowsay/default.nix
