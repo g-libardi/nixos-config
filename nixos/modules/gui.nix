@@ -35,9 +35,11 @@
     programs.waybar.enable = true;
     programs.foot.enable = true;
     environment.systemPackages = [
-        pkgs.hypridle  # idle manager
-        pkgs.hyprshot  # screenshot tool
-        pkgs.hyprpanel # panel
+        pkgs.hypridle   # idle manager
+        pkgs.hyprshot   # screenshot tool
+        pkgs.hyprpanel  # panel
+        pkgs.hyprnotify # notification daemon
+        pkgs.gum        # tui utility
     ];
 
 

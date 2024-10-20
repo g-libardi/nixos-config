@@ -4,7 +4,7 @@
     environment.systemPackages = with pkgs; [
         rustup
         uv
-        bun
+        deno
         gcc
     ];
 }
