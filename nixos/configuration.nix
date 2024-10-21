@@ -10,8 +10,8 @@
         ./modules/packages.nix
         ./modules/gui.nix
         ./modules/development.nix
-        ./modules/nvidia.nix
         ./modules/firewall.nix
+        (if g.hostName == "desktop" then ./modules/nvidia.nix else null)
         # ./programs/games.nix
         # ./modules/cowsay/default.nix
         ];
