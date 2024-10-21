@@ -5,6 +5,7 @@
         rustup
         uv
         deno
+        nodejs
         gcc
         zellij
     ];
