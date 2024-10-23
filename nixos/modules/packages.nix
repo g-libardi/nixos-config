@@ -2,7 +2,7 @@
 
 {
     # Install firefox.
-    programs.firefox.enable = true;
+    # programs.firefox.enable = true;
     programs.kdeconnect.enable = true;
     programs.dconf.enable = true;
     programs.nix-ld.enable = true;
@@ -26,6 +26,7 @@
     environment.systemPackages = with pkgs; [
         vim
 	neovim
+        brave
         nautilus
         nwg-look
         lxqt.lxqt-policykit
