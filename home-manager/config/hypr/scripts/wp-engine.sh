@@ -8,6 +8,7 @@ throw() {
 
 # Usa gum para solicitar um input do usuário
 LWE_WALLPAPER_ID=$(gum input --placeholder "Wallpaper workshop link")
+MONITOR=$(hyprctl monitors | grep "Monitor" | awk '{print $2}')
 
 # Limpa o log
 echo "" > /tmp/lew_util.log
@@ -18,7 +19,7 @@ if [ -n "$LWE_WALLPAPER_ID" ]; then
     LWE_WALLPAPER_ID=$(echo $LWE_WALLPAPER_ID | grep -oP '(?<=id=)\d+')
     echo "$LWE_WALLPAPER_ID selecionado. Iniciando o wallpaper..."
     pkill linux-wallpaper
-    hyprctl dispatch exec "linux-wallpaperengine --screen-root HDMI-A-1 $LWE_WALLPAPER_ID &> /tmp/lew_util.log"
+    hyprctl dispatch exec "linux-wallpaperengine --screen-root $MONITOR $LWE_WALLPAPER_ID &> /tmp/lew_util.log"
     # verifica se o comando foi executado com sucesso
     HAS_ERROR=$(grep -i "error" /tmp/lew_util.log)
     # if [ -z "$HAS_ERROR" ]; then

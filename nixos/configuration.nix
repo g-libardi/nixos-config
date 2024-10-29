@@ -11,7 +11,7 @@
         ./modules/gui.nix
         ./modules/development.nix
         ./modules/firewall.nix
-        (if g.hostName == "desktop" then ./modules/nvidia.nix else null)
+        (if g.hostName == "desktop" then ./modules/nvidia.nix else ./modules/null.nix)
         # ./programs/games.nix
         # ./modules/cowsay/default.nix
         ];

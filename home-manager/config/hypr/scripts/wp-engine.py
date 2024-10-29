@@ -36,5 +36,5 @@ if result.returncode == 0:
     wall_id = wallpaper.path.split('/')[-1]
     print(f'Setting wallpaper to {wallpaper.name}')
     subprocess.run('pkill linux-wallpaper', shell=True)
-    subprocess.run(['hyprctl', 'dispatch', 'exec', f'linux-wallpaperengine --screen-root HDMI-A-1 {wall_id}'])
+    subprocess.run(['hyprctl', 'dispatch', 'exec', f'linux-wallpaperengine --screen-root {screen} {wall_id}'], )
 
