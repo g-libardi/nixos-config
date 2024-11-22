@@ -12,7 +12,8 @@ let
         lib.strings.stringToCharacters (lib.strings.replaceStrings safeChars (empties safeChars) path);
 
       safeName = lib.strings.replaceStrings unsafeInName (empties unsafeInName) path;
-    in "nixos_" + safeName;
+   in "nixos_" + safeName;
+
 
   # Main function to create the symlink
   mkOutOfStoreSymlink = path:
@@ -24,6 +25,5 @@ let
         ln -s ${lib.escapeShellArg pathStr} $out
       '';
 in {
-  lib = { inherit mkOutOfStoreSymlink }
+  lib = { inherit mkOutOfStoreSymlink; };
 }
-

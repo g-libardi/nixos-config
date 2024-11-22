@@ -6,7 +6,10 @@ return {
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
         "echasnovski/mini.icons",
+<<<<<<< Updated upstream
         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+=======
+>>>>>>> Stashed changes
     },
     config = function()
     end,
