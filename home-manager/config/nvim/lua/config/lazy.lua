@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 -- Luarocks
--- opts.rocks.enabled = false
+-- opts.rocks.enabled = true
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -34,6 +34,9 @@ require("lazy").setup({
     install = { colorscheme = { "tokyonight-storm" } },
     -- automatically check for plugin updates
     checker = { enabled = true },
+    rockas = {
+        hererocks = true,
+    },
 })
 
 

@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    musnix.url = "github:musnix/musnix";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
@@ -34,12 +35,14 @@
 
           specialArgs = {
             g = import ./globals.nix // { hostName = hn; };
+            musnix = inputs.musnix;
           };
 
           modules = [
             pkgsOverlays
             ./nixos/configuration.nix
             # ./lib/mkOutOfStoreSymLink.nix
+            inputs.musnix.nixosModules.musnix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

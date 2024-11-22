@@ -31,6 +31,14 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    pavucontrol
+    pulseaudio
+    helvum
+  ];
+
+  # Reaktime audio helper
+  musnix.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -55,6 +63,7 @@
       (wrapOBS {
         plugins = with obs-studio-plugins; [
           droidcam-obs
+          easyeffects
         ];
       })
       # ...

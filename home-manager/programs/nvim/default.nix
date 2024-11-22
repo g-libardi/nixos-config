@@ -22,6 +22,9 @@ let
         pkgs.nodePackages_latest.nodejs
         pkgs.fd
         pkgs.ripgrep
+        pkgs.lua
+        pkgs.imagemagick
+        pkgs.luajitPackages.magick
     ];
 
     runtimeDepsDirs = pkgs.lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") runtimeDeps);
