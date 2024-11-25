@@ -31,6 +31,6 @@
     system.stateVersion = "24.05"; # Did you read the comment?
 
 
-    # NOTE: The next lines are tests only
-    environment.pathsToLink."/home/libardi/testes/" = ./testes;
+    # NOTE: The following lines are tests only
+    # environment.pathsToLink."/home/libardi/testes/" = ./testes;
 }

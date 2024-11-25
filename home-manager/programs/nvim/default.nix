@@ -23,6 +23,7 @@ let
         pkgs.fd
         pkgs.ripgrep
         pkgs.lua
+        pkgs.cargo
         pkgs.imagemagick
         pkgs.luajitPackages.magick
     ];
