@@ -23,6 +23,7 @@ let
             pyperclip
             nbformat
             pillow
+            ipykernel
         ]))
         pkgs.wget
         pkgs.unzip
