@@ -46,4 +46,13 @@
     LC_TELEPHONE = "pt_BR.UTF-8";
     LC_TIME = "pt_BR.UTF-8";
   };
+
+  # Default shell with auto-completion and syntax highlighting.
+  programs.zsh.enable = true;
+  programs.zsh.autosuggestions.enable = true;
+  programs.zsh.syntaxHighlighting.enable = true;
+  environment.systemPackages = [ pkgs.zplug ];
+
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
 }

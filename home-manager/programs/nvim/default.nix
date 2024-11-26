@@ -13,7 +13,7 @@ let
 
     runtimeDeps = [
         nvimPkg
-        (pkgs.python312.withPackages (ps: with ps; [
+        (pkgs.python311.withPackages (ps: with ps; [
             pynvim
             jupyter_client
             cairosvg
@@ -32,11 +32,11 @@ let
         pkgs.nodePackages_latest.nodejs
         pkgs.fd
         pkgs.ripgrep
-        (pkgs.lua5_1.withPackages (ps: with ps; [
-            luarocks
-        ]))
-        pkgs.rPackages.magick
+        pkgs.lua5_1
+        pkgs.lua51Packages.luarocks
         pkgs.cargo
+        pkgs.imagemagick
+        pkgs.luajitPackages.magick
     ];
 
     runtimeDepsDirs = pkgs.lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") runtimeDeps);
@@ -60,9 +60,6 @@ mkdir -p $out/bin
 cat <<EOF > $out/bin/nvim
 #!/bin/bash
 PATH=$PATH:${runtimeDepsDirs} \
-LUA_CPATH=$(luarocks path --lr-cpath) \
-LUA_PATH=$(luarocks path --lr-path) \
-TESTANDO=1 \
 exec ${nvimPkg}/bin/nvim
 EOF
 chmod +x $out/bin/nvim
