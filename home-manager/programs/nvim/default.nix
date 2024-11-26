@@ -13,7 +13,17 @@ let
 
     runtimeDeps = [
         nvimPkg
-        pkgs.python3
+        (pkgs.python312.withPackages (ps: with ps; [
+            pynvim
+            jupyter_client
+            cairosvg
+            pnglatex
+            plotly
+            kaleido
+            pyperclip
+            nbformat
+            pillow
+        ]))
         pkgs.wget
         pkgs.unzip
         pkgs.curl
@@ -22,14 +32,17 @@ let
         pkgs.nodePackages_latest.nodejs
         pkgs.fd
         pkgs.ripgrep
-        pkgs.lua
+        (pkgs.lua5_1.withPackages (ps: with ps; [
+            luarocks
+        ]))
+        pkgs.rPackages.magick
         pkgs.cargo
-        pkgs.imagemagick
-        pkgs.luajitPackages.magick
     ];
 
     runtimeDepsDirs = pkgs.lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") runtimeDeps);
+
 in
+
 pkgs.stdenv.mkDerivation rec {
     pname = "nvim";
     version = "stable";
@@ -39,6 +52,8 @@ pkgs.stdenv.mkDerivation rec {
     propagatedBuildInputs = [ nvimPkg ];
 
     unpackPhase = ":";
+
+    configurePhase = ":";
 
     installPhase = "
 mkdir -p $out/bin

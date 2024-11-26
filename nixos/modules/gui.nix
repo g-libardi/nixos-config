@@ -45,7 +45,7 @@
 
 
     # define environment variable for terminal
-    environment.variables = { TERM = "foot"; TERMINAL = "foot"; };
+    environment.variables = { TERM = "kitty"; TERMINAL = "kitty"; };
 
 
     # Enable the Gnome Display Manager

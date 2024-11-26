@@ -34,7 +34,7 @@ require("lazy").setup({
     install = { colorscheme = { "tokyonight-storm" } },
     -- automatically check for plugin updates
     checker = { enabled = true },
-    rockas = {
+    rocks = {
         hererocks = true,
     },
 })
