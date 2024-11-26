@@ -59,7 +59,11 @@ pkgs.stdenv.mkDerivation rec {
 mkdir -p $out/bin
 cat <<EOF > $out/bin/nvim
 #!/bin/bash
-PATH=$PATH:${runtimeDepsDirs} exec ${nvimPkg}/bin/nvim
+PATH=$PATH:${runtimeDepsDirs} \
+LUA_CPATH=$(luarocks path --lr-cpath) \
+LUA_PATH=$(luarocks path --lr-path) \
+TESTANDO=1 \
+exec ${nvimPkg}/bin/nvim
 EOF
 chmod +x $out/bin/nvim
     ";
