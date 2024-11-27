@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     musnix.url = "github:musnix/musnix";
-    nix-link.url = "/home/libardi/github/nixlink";
+    nix-link.url = "github:g-libardi/nix-link/main";
   };
 
   outputs = { self, nixpkgs, home-manager, nix-link, ... } @ inputs:

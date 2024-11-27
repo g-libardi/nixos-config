@@ -44,14 +44,18 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1732675004,
-        "narHash": "sha256-R3fPW+joPOIAs7MbL/xHNOMJc0C+5yyFU4gqsn/1vDc=",
-        "path": "/home/libardi/github/nixlink",
-        "type": "path"
+        "lastModified": 1732706889,
+        "narHash": "sha256-nF4uh6Q9OhN58LAROsTSPa1we0sWWatGumvILyPxiSE=",
+        "owner": "g-libardi",
+        "repo": "nix-link",
+        "rev": "73430f7bf78e9f05b95912f1382009fd2d7b061e",
+        "type": "github"
       },
       "original": {
-        "path": "/home/libardi/github/nixlink",
-        "type": "path"
+        "owner": "g-libardi",
+        "ref": "main",
+        "repo": "nix-link",
+        "type": "github"
       }
     },
     "nixpkgs": {
