@@ -66,6 +66,6 @@
 
   nix.optimise = {
     automatic = true;
-    dates = "daily";
-  }
+    dates = ["daily"];
+  };
 }
