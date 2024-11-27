@@ -8,23 +8,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     musnix.url = "github:musnix/musnix";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    nix-link.url = "/home/libardi/github/nixlink";
   };
 
-  outputs = { self, nixpkgs, hyprpanel, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-link, ... } @ inputs:
     let
       hostNames = [ "desktop" "laptop" ];
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          hyprpanel.overlay
         ];
       };
       lib = pkgs.lib;
       pkgsOverlays = (inputs: {
         nixpkgs.overlays = [
-          hyprpanel.overlay
         ];
       });
 
@@ -43,6 +41,7 @@
             ./nixos/configuration.nix
             # ./lib/mkOutOfStoreSymLink.nix
             inputs.musnix.nixosModules.musnix
+            nix-link.nixosModules.nix-link
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

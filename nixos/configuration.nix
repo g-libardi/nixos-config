@@ -32,5 +32,5 @@
 
 
     # NOTE: The following lines are tests only
-    # environment.pathsToLink."/home/libardi/testes/" = ./testes;
+    nix-link.enable = true;
 }

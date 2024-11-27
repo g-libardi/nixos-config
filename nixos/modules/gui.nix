@@ -37,7 +37,6 @@
     environment.systemPackages = [
         pkgs.hypridle   # idle manager
         pkgs.hyprshot   # screenshot tool
-        pkgs.hyprpanel  # panel
         pkgs.libnotify  # notification daemon library
         pkgs.hyprnotify # notification daemon
         pkgs.gum        # tui utility
