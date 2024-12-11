@@ -9,6 +9,7 @@ return {
         config = function()
             require("image").setup({
                 processor = "magick_cli",
+
             })
         end,
     },
