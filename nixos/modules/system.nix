@@ -1,7 +1,6 @@
 { config, pkgs, g, ... }:
 
 {
-  
   # system config location
   environment.variables = {
     U_NIX_CONFIG = "/home/guilherme/nixos-config";
@@ -56,6 +55,8 @@
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
 
+  # Enable NFTS support
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # nix optimization and garbage collection
   nix.gc = {

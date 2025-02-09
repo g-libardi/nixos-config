@@ -3,8 +3,6 @@
   "cpplint": "2.0.0",
   "flake8": "7.1.1",
   "jupytext": "1.16.4",
-  "lua-language-server": "3.13.2",
   "python-lsp-server": "1.12.0",
-  "rust-analyzer": "2024-11-25",
-  "selene": "0.27.1"
+  "rust-analyzer": "2024-11-04"
 }

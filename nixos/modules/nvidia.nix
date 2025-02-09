@@ -9,6 +9,11 @@
     services.xserver.videoDrivers = ["nvidia"];
 
 
+    # Enable CUDA support
+    environment.systemPackages = with pkgs; [
+        cudaPackages.cudatoolkit
+    ];
+
     hardware.nvidia = {
         # Modesetting is required.
         modesetting.enable = true;
