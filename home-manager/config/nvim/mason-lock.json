@@ -1,8 +1,12 @@
 {
-  "autopep8": "2.3.1",
+  "autopep8": "2.3.2",
   "cpplint": "2.0.0",
-  "flake8": "7.1.1",
-  "jupytext": "1.16.4",
-  "python-lsp-server": "1.12.0",
-  "rust-analyzer": "2024-11-04"
+  "flake8": "7.1.2",
+  "go-debug-adapter": "v0.44.0",
+  "goimports": "v0.30.0",
+  "golangci-lint": "v1.64.5",
+  "gopls": "v0.18.1",
+  "jupytext": "1.16.7",
+  "python-lsp-server": "1.12.2",
+  "rust-analyzer": "2025-02-24"
 }

@@ -38,6 +38,7 @@ let
         pkgs.cargo
         pkgs.imagemagick
         pkgs.luajitPackages.magick
+        pkgs.go
     ];
 
     runtimeDepsDirs = pkgs.lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") runtimeDeps);

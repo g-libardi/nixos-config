@@ -8,6 +8,7 @@
         nodejs
         gcc
         zellij
+        go
     ];
 
     environment.shellAliases = 
