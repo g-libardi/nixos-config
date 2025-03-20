@@ -3,15 +3,22 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     musnix.url = "github:musnix/musnix";
     nix-link.url = "github:g-libardi/nix-link/main";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-link, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, nix-link, lanzaboote, ... } @ inputs:
     let
       hostNames = [ "desktop" "laptop" ];
       system = "x86_64-linux";
@@ -51,6 +58,23 @@
               ];
               home-manager.users.libardi = ./home-manager/libardi.nix;
             }
+
+            # Secure Boot
+            lanzaboote.nixosModules.lanzaboote
+
+            ({ pkgs, lib, ... }: {
+
+              environment.systemPackages = [
+                pkgs.sbctl
+              ];
+              boot.loader.systemd-boot.enable = lib.mkForce false;
+
+              boot.lanzaboote = {
+                enable = true;
+                pkiBundle = "/etc/secureboot";
+              };
+            })
+
           ];
         };
       };
@@ -61,7 +85,7 @@
         {} hostNames;
     in
       {
-        nixosConfigurations = combinedConfigurations;
-      };
+      nixosConfigurations = combinedConfigurations;
+    };
 }
 
