@@ -1,69 +1,47 @@
-{ pkgs }:
+{ pkgs, lib }:
 let
-    nvimPkg = pkgs.neovim-unwrapped.overrideAttrs (oldAttrs: {
-        pname = "neovim-unwrapped-custom";
-        version = "stable";  # Replace with the desired version
+    neovim-stable = pkgs.neovim-unwrapped.overrideAttrs (old: {
+        pname = "neovim-stable";
+        version = "stable";
         src = pkgs.fetchFromGitHub {
             owner = "neovim";
             repo = "neovim";
-            rev = "stable";  # Match the desired version here
-            sha256 = "sha256-OsHIacgorYnB/dPbzl1b6rYUzQdhTtsJYLsFLJxregk=";  # You will need to fill in the hash
+            rev = "stable";
+            hash = "sha256-OsHIacgorYnB/dPbzl1b6rYUzQdhTtsJYLsFLJxregk=";
         };
+        doInstallCheck = false;
     });
 
+    pythonEnv = pkgs.python311.withPackages (ps: with ps; [
+        pynvim
+        jupyter_client
+        cairosvg
+        pnglatex
+        plotly
+        kaleido
+        pyperclip
+        nbformat
+        pillow
+        ipykernel
+    ]);
+
     runtimeDeps = [
-        nvimPkg
-        (pkgs.python311.withPackages (ps: with ps; [
-            pynvim
-            jupyter_client
-            cairosvg
-            pnglatex
-            plotly
-            kaleido
-            pyperclip
-            nbformat
-            pillow
-            ipykernel
-        ]))
-        pkgs.wget
-        pkgs.unzip
-        pkgs.curl
-        pkgs.git
-        pkgs.wl-clipboard
-        pkgs.nodePackages_latest.nodejs
         pkgs.fd
         pkgs.ripgrep
+        pkgs.nodePackages_latest.nodejs
         pkgs.lua5_1
-        pkgs.lua51Packages.luarocks
-        pkgs.cargo
-        pkgs.imagemagick
-        pkgs.luajitPackages.magick
         pkgs.go
+        pkgs.wl-clipboard
+        pkgs.imagemagick
     ];
 
-    runtimeDepsDirs = pkgs.lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") runtimeDeps);
-
-in
-
-pkgs.stdenv.mkDerivation rec {
-    pname = "nvim";
-    version = "stable";
-    name = "libardi-nvim-${version}";
-
-    buildInputs = runtimeDeps;
-    propagatedBuildInputs = [ nvimPkg ];
-
-    unpackPhase = ":";
-
-    configurePhase = ":";
-
-    installPhase = "
-mkdir -p $out/bin
-cat <<EOF > $out/bin/nvim
-#!/bin/bash
-PATH=$PATH:${runtimeDepsDirs} \
-exec ${nvimPkg}/bin/nvim
-EOF
-chmod +x $out/bin/nvim
-    ";
-}
+in pkgs.wrapNeovimUnstable neovim-stable {
+        viAlias = true;
+        vimAlias = true;
+        withNodeJs = true;
+        withPython3 = true;
+        wrapRc = false;
+        wrapperArgs = [
+            "--prefix" "PATH" ":" (lib.makeBinPath runtimeDeps)
+        ];
+    }

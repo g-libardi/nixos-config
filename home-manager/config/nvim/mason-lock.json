@@ -7,6 +7,8 @@
   "golangci-lint": "v1.64.5",
   "gopls": "v0.18.1",
   "jupytext": "1.16.7",
+  "nil": "2024-08-06",
+  "nixpkgs-fmt": "1.3.0",
   "python-lsp-server": "1.12.2",
   "rust-analyzer": "2025-02-24"
 }

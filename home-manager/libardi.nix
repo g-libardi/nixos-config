@@ -14,7 +14,7 @@
     pkgs.microsoft-edge
     pkgs.discord
     pkgs.vesktop
-    (import ./programs/nvim { inherit pkgs; }) 
+    (import ./programs/nvim { inherit pkgs; lib=inputs.lib; }) 
   ];
 
 

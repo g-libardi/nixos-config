@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
   # Sanitizes path names for the Nix store.
   storeFileName = path:
@@ -13,7 +13,7 @@ let
         (lib.strings.replaceStrings allowedChars (removeAll allowedChars) path);
       result = lib.strings.replaceStrings toRemove (removeAll toRemove) path;
     in
-      "nixos_" + result;
+      "nixos_linked_file_" + result;
 
   # Creates a symlink in the store pointing to an out-of-store file.
   mkOutOfStoreSymlink = path:
