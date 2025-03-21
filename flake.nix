@@ -62,7 +62,10 @@
             # Secure Boot
             lanzaboote.nixosModules.lanzaboote
 
-            ({ pkgs, lib, ... }: {
+            ({ pkgs, lib, ... }: 
+            if hn != "desktop" then {
+            } else
+            {
 
               environment.systemPackages = [
                 pkgs.sbctl
