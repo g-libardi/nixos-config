@@ -46,7 +46,7 @@
           modules = [
             pkgsOverlays
             ./nixos/configuration.nix
-            # ./lib/mkOutOfStoreSymLink.nix
+            # ./lib/mkOutOfStoreSymlink.nix
             inputs.musnix.nixosModules.musnix
             nix-link.nixosModules.nix-link
             home-manager.nixosModules.home-manager
