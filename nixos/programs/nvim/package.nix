@@ -33,6 +33,7 @@ let
         pkgs.go
         pkgs.wl-clipboard
         pkgs.imagemagick
+        pkgs.git
     ];
 
 in pkgs.wrapNeovimUnstable neovim-stable {

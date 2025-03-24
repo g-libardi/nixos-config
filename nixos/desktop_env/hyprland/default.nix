@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+    # Load dotfiles
+    file."/home/libardi/.config/hypr".source = "/home/libardi/nixos-config/nixos/desktop_env/hyprland/dotfiles/hypr";
+    file."/home/libardi/.config/waybar".source = "/home/libardi/nixos-config/nixos/desktop_env/hyprland/dotfiles/waybar";
+    file."/home/libardi/.config/tofi".source = "/home/libardi/nixos-config/nixos/desktop_env/hyprland/dotfiles/tofi";
 
     # Configure keymap in X11
     services.xserver.xkb = {
@@ -33,13 +37,16 @@
     programs.hyprland.xwayland.enable = true;
     services.hypridle.enable = true;
     programs.waybar.enable = true;
-    programs.foot.enable = true;
     environment.systemPackages = [
+        pkgs.tofi
+        pkgs.hyprpolkitagent # polkit agent
         pkgs.hypridle   # idle manager
         pkgs.hyprshot   # screenshot tool
         pkgs.libnotify  # notification daemon library
         pkgs.hyprnotify # notification daemon
         pkgs.gum        # tui utility
+        pkgs.overskride # bluetooth manager
+        pkgs.nwg-displays # display manager
     ];
 
 
@@ -48,11 +55,11 @@
 
 
     # Enable the Gnome Display Manager
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.displayManager.gdm.wayland = true;
+    services.displayManager.ly.enable = true;
     services.displayManager.defaultSession = "hyprland";
 
 
     # Enable the X11 windowing system.
     services.xserver.enable = true;
 }
+

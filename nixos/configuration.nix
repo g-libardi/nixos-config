@@ -8,13 +8,10 @@
         ./modules/services.nix
         ./modules/users.nix
         ./modules/packages.nix
-        ./modules/gui.nix
         ./modules/development.nix
         ./modules/firewall.nix
         (if g.hostName == "desktop" then ./modules/nvidia.nix else ./modules/null.nix)
-        # ./programs/games.nix
-        # ./modules/cowsay/default.nix
-        ../lib/mkOutOfStoreSymlink.nix
+        ../lib/file.nix
         ];
 
     # custom alias for system rebuild

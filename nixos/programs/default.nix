@@ -1,0 +1,35 @@
+{ ... }:
+  #   let
+  # # Function to recursively find all default.nix files under a given path
+  # findDefaultNix = path:
+  #   let
+  #     # Read the directory entries
+  #     entries = builtins.readDir path;
+  #     # Process each entry
+  #     processEntry = name: type:
+  #       if type == "directory" then
+  #         # Recurse into the directory
+  #         findDefaultNix (path + "/${name}")
+  #       else if type == "regular" && name == "default.nix" then
+  #         # Add the path to the list if it's default.nix
+  #         [ (path + "/${name}") ]
+  #       else
+  #         # Ignore other entries
+  #         [];
+  #   in
+  #     # Concatenate all lists of paths found
+  #     builtins.concatLists (builtins.attrValues (builtins.mapAttrs processEntry entries));
+  #
+  # # Find all default.nix files starting from ./myDir
+  # defaultNixFiles = findDefaultNix ./.;
+  #
+  # # Import each found default.nix file
+  # imports = builtins.map (p: import p) defaultNixFiles;
+
+# in
+{
+    # inherit imports;
+    imports = [
+        ./nvim/default.nix
+    ];
+}

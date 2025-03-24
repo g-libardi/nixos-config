@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +13,7 @@
     nix-link.url = "github:g-libardi/nix-link/main";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-link, lanzaboote, ... } @ inputs:
+  outputs = { self, nixpkgs, nix-link, lanzaboote, ... } @ inputs:
     let
       hostNames = [ "desktop" "laptop" ];
       system = "x86_64-linux";
@@ -46,18 +41,10 @@
           modules = [
             pkgsOverlays
             ./nixos/configuration.nix
-            # ./lib/mkOutOfStoreSymlink.nix
+            ./nixos/programs
+            ./nixos/desktop_env
             inputs.musnix.nixosModules.musnix
             nix-link.nixosModules.nix-link
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.sharedModules = [
-                ./home-manager/shared.nix
-              ];
-              home-manager.users.libardi = ./home-manager/libardi.nix;
-            }
 
             # Secure Boot
             lanzaboote.nixosModules.lanzaboote

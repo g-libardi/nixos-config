@@ -2,6 +2,8 @@
 
 {
     environment.systemPackages = with pkgs; [
+        git
+        gh
         rustup
         uv
         deno

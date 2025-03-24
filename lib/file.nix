@@ -5,7 +5,7 @@ let
     let
       pathStr = toString path;
       base = baseNameOf pathStr;  # Fixed: Use baseNameOf directly
-      
+
       # List of allowed characters
       allowedChars = [ "+" "." "_" "?" "=" "-" ]
         ++ lib.strings.lowerChars
@@ -26,10 +26,10 @@ let
   # Creates a symlink in the store pointing to an out-of-store file.
   mkOutOfStoreSymlink = path:
     pkgs.runCommand (storeFileName path) {} ''
-      ln -s ${lib.escapeShellArg (toString path)} $out
+      ln -sn ${lib.escapeShellArg (toString path)} $out
     '';
 in
-{
+  {
   ##### 1) Define our top-level module option: "file"
   options.file = lib.mkOption {
     type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {
@@ -45,16 +45,26 @@ in
           description = "Optional source file to symlink to ${name}.";
         };
       };
-      # assertions = [
-      #   {
-      #     assertion = (config.text != null) != (config.source != null);
-      #     message = "Must set exactly one of 'text' or 'source' for file '${name}'.";
-      #   }
-      # ];
     }));
     default = {};
     description = "Attribute set of files to manage, keyed by absolute path.";
   };
+
+  config.assertions = 
+  let
+    declaredFiles = builtins.attrNames config.file;
+    
+    # Only allow absolute paths
+    invalidPaths = lib.filter (path: ! lib.hasPrefix "/" path) declaredFiles;
+
+    # Not possible to declare source and text at the same file
+    invalidCfg = lib.filter (path: let cfg = config.file.${path}; in cfg.source != null && cfg.text != null) declaredFiles;
+  in
+    [
+      { assertion = builtins.length invalidPaths == 0; message = "Paths should be absolute: ${lib.concatStringsSep ", " invalidPaths}"; }
+      { assertion = builtins.length invalidCfg == 0; message = "Cannot declare both source and text for the same file: ${lib.concatStringsSep ", " invalidCfg}"; }
+    ];
+
 
   ##### 2) Implementation: activation script to manage files
   config = {
