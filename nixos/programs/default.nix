@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
   #   let
   # # Function to recursively find all default.nix files under a given path
   # findDefaultNix = path:
@@ -31,5 +31,18 @@
     # inherit imports;
     imports = [
         ./nvim/default.nix
+    ];
+
+    # other programs
+    # steam
+    programs.steam = {
+        enable = true;
+        extest.enable = true;
+        protontricks.enable = true;
+        remotePlay.openFirewall = true;
+    };
+
+    environment.systemPackages = with pkgs; [
+        zen-browser
     ];
 }

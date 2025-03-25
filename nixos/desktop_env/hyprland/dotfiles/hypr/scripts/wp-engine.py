@@ -26,9 +26,10 @@ for wallpaper_dir in wallpaper_dirs:
         wallpapers.append(Wallpaper(data['title'], wallpaper_dir, f'{wallpaper_dir}/{data["preview"]}'))
 
 
-
 result = subprocess.run(['gum', 'choose'] + list(map(lambda x: x.name, wallpapers)), stdout=subprocess.PIPE, text=True)
-wallpaper = list(filter(lambda x: x.name == result.stdout, wallpapers))[0]
+selected = result.stdout.strip()
+print(f'Selected {selected}')
+wallpaper = list(filter(lambda x: x.name == selected, wallpapers))[0]
 
 
 if result.returncode == 0:
@@ -37,4 +38,4 @@ if result.returncode == 0:
     print(f'Setting wallpaper to {wallpaper.name}')
     subprocess.run('pkill linux-wallpaper', shell=True)
     subprocess.run(['hyprctl', 'dispatch', 'exec', f'linux-wallpaperengine --screen-root {screen} {wall_id}'], )
-
+    input('Press enter to exit')

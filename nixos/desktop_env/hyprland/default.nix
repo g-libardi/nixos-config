@@ -47,6 +47,7 @@
         pkgs.gum        # tui utility
         pkgs.overskride # bluetooth manager
         pkgs.nwg-displays # display manager
+        pkgs.linux-wallpaperengine # wallpaper engine
     ];
 
 

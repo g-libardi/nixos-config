@@ -22,11 +22,11 @@ if [ -n "$LWE_WALLPAPER_ID" ]; then
     hyprctl dispatch exec "linux-wallpaperengine --screen-root $MONITOR $LWE_WALLPAPER_ID &> /tmp/lew_util.log"
     # verifica se o comando foi executado com sucesso
     HAS_ERROR=$(grep -i "error" /tmp/lew_util.log)
-    # if [ -z "$HAS_ERROR" ]; then
-    #     throw "Erro ao iniciar o wallpaper. Verifique o log em /tmp/lew_util.log"
-    #     cat /tmp/lew_util.log
-    #     read -p "Press Enter to exit..."
-    # fi
+    if [ -z "$HAS_ERROR" ]; then
+        throw "Erro ao iniciar o wallpaper. Verifique o log em /tmp/lew_util.log"
+        cat /tmp/lew_util.log
+        read -p "Press Enter to exit..."
+    fi
 else
     echo "No input provided, wallpaper-engine will be closed."
     pkill linux-wallpaper

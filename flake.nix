@@ -9,11 +9,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    musnix.url = "github:musnix/musnix";
-    nix-link.url = "github:g-libardi/nix-link/main";
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-link = {
+      url = "github:g-libardi/nix-link/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-link, lanzaboote, ... } @ inputs:
+  outputs = { self, nixpkgs, nix-link, lanzaboote, zen, ... } @ inputs:
     let
       hostNames = [ "desktop" "laptop" ];
       system = "x86_64-linux";
@@ -23,10 +35,13 @@
         ];
       };
       lib = pkgs.lib;
-      pkgsOverlays = (inputs: {
+      pkgsOverlays = { ... }: {
         nixpkgs.overlays = [
+          (_: _: {
+            zen-browser = inputs.zen.packages.${system}.default;
+          })
         ];
-      });
+      };
 
       # This function will create an attrset for a given value
       makeNixosConfiguration = hn: {
