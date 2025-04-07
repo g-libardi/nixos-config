@@ -7,13 +7,31 @@ return {
         "williamboman/mason-lspconfig.nvim",
         opts = {
             ensure_installed = {
-                "lua_ls", "tsserver",
+                "lua_ls", "tsserver", "flake8"
             },
         },
         config = function()
             require("mason-lspconfig").setup_handlers {
                 function(server_name)
-                    require("lspconfig")[server_name].setup {}
+                    if server_name == "pylsp" then
+                        require("lspconfig")[server_name].setup {
+                            settings = {
+                                pylsp = {
+                                    plugins = {
+                                        flake8 = {
+                                            enabled = true,
+                                            extendIgnore = { "E501" }, -- Ignore line length errors
+                                        },
+                                        pycodestyle = {
+                                            ignore = { "E501" }, -- Ignore line length errors
+                                        },
+                                    }
+                                }
+                            }
+                        }
+                    else
+                        require("lspconfig")[server_name].setup {}
+                    end
                 end,
             }
         end
@@ -22,7 +40,7 @@ return {
         "zapling/mason-lock.nvim", init = function()
             require("mason-lock").setup({
                 lockfile_path = vim.fn.stdpath("config") .. "/mason-lock.json" -- (default)
-            }) 
+            })
         end,
     },
     {

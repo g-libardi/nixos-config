@@ -44,5 +44,6 @@
 
     environment.systemPackages = with pkgs; [
         zen-browser
+        discord
     ];
 }

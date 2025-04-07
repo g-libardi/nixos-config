@@ -8,10 +8,18 @@
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = ["nvidia"];
 
+    # Disable hardware cursor for hyprland
+    environment.variables = {
+        "WLR_NO_HARDWARE_CURSORS" = "1";
+        "GBM_BACKEND" = "nvidia-drm";
+        "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+    };
 
     # Enable CUDA support
     environment.systemPackages = with pkgs; [
         cudaPackages.cudatoolkit
+        libgbm
+        egl-wayland
     ];
 
     hardware.nvidia = {
@@ -43,5 +51,8 @@
         # Enable the Nvidia settings menu,
         # accessible via `nvidia-settings`.
         nvidiaSettings = true;
+
+        # Driver version to use.
+        package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
 }

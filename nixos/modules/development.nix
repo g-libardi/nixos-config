@@ -11,6 +11,8 @@
         gcc
         zellij
         go
+        portaudio
+        code-cursor
     ];
 
     environment.shellAliases = 
