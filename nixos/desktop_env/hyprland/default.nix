@@ -54,13 +54,5 @@
     # define environment variable for terminal
     environment.variables = { TERM = "kitty"; TERMINAL = "kitty"; };
 
-
-    # Enable the Gnome Display Manager
-    services.displayManager.ly.enable = true;
-    services.displayManager.defaultSession = "hyprland";
-
-
-    # Enable the X11 windowing system.
-    services.xserver.enable = true;
 }
 

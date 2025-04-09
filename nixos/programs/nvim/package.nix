@@ -1,17 +1,5 @@
 { pkgs, lib }:
 let
-    neovim-stable = pkgs.neovim-unwrapped.overrideAttrs (old: {
-        pname = "neovim-stable";
-        version = "stable";
-        src = pkgs.fetchFromGitHub {
-            owner = "neovim";
-            repo = "neovim";
-            rev = "stable";
-            hash = "sha256-OsHIacgorYnB/dPbzl1b6rYUzQdhTtsJYLsFLJxregk=";
-        };
-        doInstallCheck = false;
-    });
-
     pythonEnv = pkgs.python311.withPackages (ps: with ps; [
         pynvim
         jupyter_client
@@ -36,7 +24,7 @@ let
         pkgs.git
     ];
 
-in pkgs.wrapNeovimUnstable neovim-stable {
+in pkgs.wrapNeovimUnstable pkgs.neovim-unwrapped {
         viAlias = true;
         vimAlias = true;
         withNodeJs = true;
