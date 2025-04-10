@@ -1,4 +1,5 @@
 # Copyright (c) 2010 Aldo Cortesi
+
 # Copyright (c) 2010, 2014 dequis
 # Copyright (c) 2012 Randall Ma
 # Copyright (c) 2012-2014 Tycho Andersen
@@ -36,24 +37,24 @@ keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "Right", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "Up", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "Left", lazy.layout.integrate_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "Right", lazy.layout.integrate_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "Down", lazy.layout.integrate_down(), desc="Move window down"),
+    Key([mod, "shift"], "Up", lazy.layout.integrate_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "control"], "Left", lazy.layout.grow_width(-30), desc="Grow window to the left"),
+    Key([mod, "control"], "Right", lazy.layout.grow_width(30), desc="Grow window to the right"),
+    Key([mod, "control"], "Down", lazy.layout.grow_height(-30), desc="Grow window down"),
+    Key([mod, "control"], "Up", lazy.layout.grow_height(30), desc="Grow window up"),
+    Key([mod], "n", lazy.layout.reset_sizes(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -94,7 +95,7 @@ for vt in range(1, 8):
     )
 
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in map(str, range(1, 11))]
 
 for i in groups:
     keys.extend(
@@ -102,14 +103,14 @@ for i in groups:
             # mod + group number = switch to group
             Key(
                 [mod],
-                i.name,
+                i.name if i.name != "10" else "0",
                 lazy.group[i.name].toscreen(),
                 desc=f"Switch to group {i.name}",
             ),
             # mod + shift + group number = switch to & move focused window to group
             Key(
                 [mod, "shift"],
-                i.name,
+                i.name if i.name != "10" else "0",
                 lazy.window.togroup(i.name, switch_group=True),
                 desc=f"Switch to & move focused window to group {i.name}",
             ),
@@ -125,7 +126,12 @@ layouts = [
     # layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    layout.Bsp(),
+    layout.Plasma(
+        border_focus="#6666ee",  # Light blue
+        border_width=3,
+        border_width_single=3,
+        margin=8,
+    ),
     # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
@@ -134,6 +140,11 @@ layouts = [
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
+    # layout.Spiral(
+    #     border_focus="#6666ee",  # Light blue
+    #     border_width=3,
+    #     margin=10,
+    # ),
 ]
 
 widget_defaults = dict(
@@ -157,16 +168,20 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
+                widget.Volume(
+                    volume_app="pavucontrol",
+                    volume_max=100,
+                    volume_min=0,
+                    volume_step=1,
+                ),
                 widget.Systray(),
                 widget.Clock(format="%d-%m-%Y %H:%M:%S"),
-                widget.QuickExit(),
+                widget.QuickExit(countdown_start=1),
             ],
             24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
