@@ -16,6 +16,11 @@
     services.displayManager.ly.enable = true;
     services.displayManager.defaultSession = "qtile";
 
+    # Configure keymap in X11
+    services.xserver.xkb = {
+        layout = "us";
+        variant = "intl";
+    };
 
     # Enable the X9 windowing system.
     services.xserver.enable = true;

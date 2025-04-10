@@ -45,5 +45,19 @@
     environment.systemPackages = with pkgs; [
         zen-browser
         discord
+        ticktick
     ];
+
+
+    # Enable themeing for GTK and QT
+    qt.style = "adwaita-dark";
+    xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        config.common.default = "*";
+        extraPortals = with pkgs; [
+            xdg-desktop-portal-wlr
+            xdg-desktop-portal-gtk
+        ];
+    };
 }
