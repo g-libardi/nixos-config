@@ -30,8 +30,19 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+
 mod = "mod4"
 terminal = guess_terminal()
+
+
+# Picom kill and restart
+@lazy.function
+def restart_qtile_and_picom(qtile):
+    qtile.cmd_restart()
+    # not working for some reason
+    qtile.cmd_spawn("pkill picom")
+    qtile.cmd_spawn("picom --daemon")
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -76,7 +87,8 @@ keys = [
         desc="Toggle fullscreen on the focused window",
     ),
     Key([mod], "Tab", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    # Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "control"], "r", restart_qtile_and_picom(), desc="Restart Qtile and Picom"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]

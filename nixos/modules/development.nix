@@ -13,6 +13,7 @@
         go
         portaudio
         code-cursor
+        direnv
     ];
 
     environment.shellAliases = 
