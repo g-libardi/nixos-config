@@ -12,7 +12,7 @@
     #     };
     # };
 
-    # Enable the Gnome Display Manager
+    # Enable the Display Manager
     services.displayManager.ly.enable = true;
     services.displayManager.defaultSession = "qtile";
 
@@ -27,7 +27,7 @@
 
     imports = [
         # lib.mkIf config.desktop_env.hyprland ./hyprland/default.nix
-        # ./hyprland/default.nix
+        ./hyprland/default.nix
         ./qtile/default.nix
     ];
 }
