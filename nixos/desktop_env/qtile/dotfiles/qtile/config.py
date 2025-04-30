@@ -202,6 +202,41 @@ screens = [
         wallpaper="/home/libardi/nixos-config/assets/image.png",
         wallpaper_mode="fill",
     ),
+    Screen(
+        bottom=bar.Bar(
+            [
+                widget.CurrentLayout(),
+                widget.GroupBox(),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Chord(
+                    chords_colors={
+                        "launch": ("#ff0000", "#ffffff"),
+                    },
+                    name_transform=lambda name: name.upper(),
+                ),
+                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                # widget.StatusNotifier(),
+                widget.Volume(
+                    volume_app="pavucontrol",
+                    volume_max=100,
+                    volume_min=0,
+                    volume_step=1,
+                ),
+                widget.Systray(),
+                widget.Clock(format="%d-%m-%Y %H:%M:%S"),
+                widget.QuickExit(countdown_start=1),
+            ],
+            24,
+        ),
+        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+        # By default we handle these events delayed to already improve performance, however your system might still be struggling
+        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+        # x11_drag_polling_rate = 60,
+        wallpaper="/home/libardi/nixos-config/assets/image.png",
+        wallpaper_mode="fill",
+    ),
 ]
 
 # Drag floating layouts.
