@@ -46,6 +46,9 @@
         zen-browser
         discord
         ticktick
+        obsidian
+        syncthing
+        syncthingtray
     ];
 
 
