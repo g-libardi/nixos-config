@@ -12,12 +12,25 @@
         ./modules/firewall.nix
         (if g.hostName == "desktop" then ./modules/nvidia.nix else ./modules/null.nix)
         ../lib/file.nix
-        ];
+    ];
 
     # custom alias for system rebuild
     environment.shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake /home/libardi/nixos-config/.";
     };
+
+    nixpkgs.config = let
+        unstableTarball =
+            fetchTarball
+            https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+    in
+        {
+            packageOverrides = pkgs: {
+                unstable = import unstableTarball {
+                    config = config.nixpkgs.config;
+                };
+            };
+        };
 
 
     # This value determines the NixOS release from which the default
