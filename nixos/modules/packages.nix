@@ -25,7 +25,7 @@
     # $ nix search wget
     environment.systemPackages = with pkgs; [
         vim
-	neovim
+        neovim
         brave
         nautilus
         nwg-look

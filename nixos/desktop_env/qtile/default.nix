@@ -10,6 +10,7 @@
     environment.systemPackages = [
         pkgs.linux-wallpaperengine
         pkgs.xwinwrap
+        pkgs.polkit_gnome  # For polkit-gnome-authentication-agent-1
     ];
 
     security.polkit.enable = true;

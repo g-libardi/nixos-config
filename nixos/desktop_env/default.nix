@@ -14,7 +14,8 @@
 
     # Enable the Display Manager
     services.displayManager.ly.enable = true;
-    services.displayManager.defaultSession = "hyprland";
+    services.autorandr.enable = true;
+    services.displayManager.defaultSession = "qtile";
 
     # Configure keymap in X11
     services.xserver.xkb = {
