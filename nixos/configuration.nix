@@ -14,6 +14,11 @@
         ../lib/file.nix
     ];
 
+    desktop_env = {
+        hyprland = true;
+        qtile = false;
+    };
+
     # custom alias for system rebuild
     environment.shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake /home/libardi/nixos-config/.";
