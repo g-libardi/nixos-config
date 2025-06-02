@@ -16,6 +16,13 @@
         direnv
     ];
 
+    virtualisation.virtualbox.host.enable = true;
+    virtualisation.virtualbox.host.enableHardening = false;
+    virtualisation.virtualbox.guest.enable = true;
+    virtualisation.virtualbox.guest.dragAndDrop = true;
+
+    users.extraGroups.vboxusers.members = [ "libardi" ];
+
     environment.shellAliases = 
         let
             cmd1 = "zellij attach --create $(pwd | tr '/' '__')";

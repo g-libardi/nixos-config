@@ -1,9 +1,10 @@
 import json
 import os
 import subprocess
+import time
 
 WORKSHOP_DIR = '~/.local/share/Steam/steamapps/workshop/content/431960'
-screen = subprocess.run('hyprctl monitors | grep Monitor', shell=True, stdout=subprocess.PIPE, text=True).stdout.split(' ')[1]
+screens = list(map(lambda x: x.split(' ')[1], subprocess.run('hyprctl monitors | grep Monitor', shell=True, stdout=subprocess.PIPE, text=True).stdout.split('\n')[:-1]))
 
 # read every top-level directory in the workshop content path
 root_dir = os.path.expanduser(WORKSHOP_DIR)
@@ -37,5 +38,8 @@ if result.returncode == 0:
     wall_id = wallpaper.path.split('/')[-1]
     print(f'Setting wallpaper to {wallpaper.name}')
     subprocess.run('pkill linux-wallpaper', shell=True)
-    subprocess.run(['hyprctl', 'dispatch', 'exec', f'linux-wallpaperengine --screen-root {screen} {wall_id}'], )
+    for screen in screens:
+        subprocess.run(['hyprctl', 'dispatch', 'exec', f'linux-wallpaperengine --screen-root {screen} {wall_id}'])
+        time.sleep(2)
+
     input('Press enter to exit')

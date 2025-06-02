@@ -3,7 +3,7 @@
 {
     imports = [
         # Include the results of the hardware scan.
-        ./hardware/${g.hostName}/hardware-configuration.nix
+        ./hardware/${g.hostName}/default.nix
         ./modules/system.nix
         ./modules/services.nix
         ./modules/users.nix
