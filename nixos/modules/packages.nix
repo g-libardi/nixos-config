@@ -42,8 +42,8 @@
 
 
     # auto-detect and mount drives
-    services.udisks2.enable = true;
-    services.gvfs.enable = true;
+    # services.udisks2.enable = true;
+    # services.gvfs.enable = true;
 
 
     # Some programs need SUID wrappers, can be configured further or are
