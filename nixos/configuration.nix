@@ -24,7 +24,7 @@
 
   # custom alias for system rebuild
   environment.shellAliases = {
-    rebuild = "sudo nixos-rebuild switch --flake /home/libardi/nixos-config/.";
+    rebuild = "sudo nixos-rebuild switch --flake ${g.systemConfigurationFlakePath}";
   };
 
   nixpkgs.config = let
@@ -45,7 +45,11 @@
   environment.systemPackages = with pkgs; [ nixfmt nil ];
 
   # --- Auto-update nixpkgs ---
-  # !TODO: Add auto-update nixpkgs
+  system.autoUpgrade = {
+    enable = true;
+    dates = "daily";
+    flake = g.systemConfigurationFlakePath;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
