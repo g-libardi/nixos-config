@@ -9,9 +9,25 @@
   services.printing.enable = true;
 
   # bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  # hardware.bluetooth.enable = true;
+  # hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        experimental = true;  # show battery level
+
+        # For controller
+        Privacy = "device";
+        JustWorksRepairing = "always";
+        Class = "0x000100";
+        FastConnectable = "true";
+      };
+    };
+  };
+  hardware.xpadneo.enable = true;
 
   # Enable MPRIS support for media players.
   services.playerctld.enable = true;
