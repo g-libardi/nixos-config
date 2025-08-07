@@ -1,5 +1,5 @@
 { lib, pkgs }:
-rec {
+{
   # Util thaat uses "file" to create a symlink to a home file in the home directory with relative paths
   homeLink = lib.mkOption {
     type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {

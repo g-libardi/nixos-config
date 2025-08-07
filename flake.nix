@@ -29,12 +29,7 @@
     let
       hostNames = [ "desktop" "laptop" ];
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-        ];
-      };
-      lib = pkgs.lib;
+      
       pkgsOverlays = { ... }: {
         nixpkgs.overlays = [
           (_: _: {
@@ -55,38 +50,22 @@
 
           modules = [
             pkgsOverlays
-            ./nixos/configuration.nix
-            ./nixos/programs
-            ./nixos/desktop_env
+            ./hosts/${hn}
             inputs.musnix.nixosModules.musnix
             nix-link.nixosModules.nix-link
-
-            # Secure Boot
+            
+            # Secure Boot (only for desktop)
             lanzaboote.nixosModules.lanzaboote
 
-            ({ pkgs, lib, ... }: 
-            if hn != "desktop" then {
-            } else
-            {
-
-              environment.systemPackages = [
-                pkgs.sbctl
-              ];
-              boot.loader.systemd-boot.enable = lib.mkForce false;
-
-              boot.lanzaboote = {
-                enable = true;
-                pkiBundle = "/etc/secureboot";
-              };
-            })
-
+            # Import the existing file utility
+            ./lib/file.nix
           ];
         };
       };
 
       # Use fold to accumulate all attribute sets into a single one
-      combinedConfigurations = lib.foldl'
-        (acc: value: lib.attrsets.recursiveUpdate acc (makeNixosConfiguration value))
+      combinedConfigurations = nixpkgs.lib.foldl'
+        (acc: value: nixpkgs.lib.attrsets.recursiveUpdate acc (makeNixosConfiguration value))
         {} hostNames;
     in
       {
