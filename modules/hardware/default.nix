@@ -11,15 +11,9 @@ with lib;
     ./input.nix
   ];
 
-  config = mkIf (config.modules.hardware.graphics.enable ||
-                 config.modules.hardware.audio.enable ||
-                 config.modules.hardware.bluetooth.enable ||
-                 config.modules.hardware.input.enable) {
-    
-    # Auto-enable common hardware modules
-    modules.hardware = {
-      audio.enable = mkDefault true;
-      input.enable = mkDefault true;
-    };
+  # Set hardware module defaults
+  config.modules.hardware = {
+    audio.enable = mkDefault true;
+    input.enable = mkDefault true;
   };
 } 

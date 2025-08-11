@@ -44,10 +44,9 @@ with lib;
     programs.gamemode.enable = true;
     
     # Hardware optimizations for gaming
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
     
     # Audio optimizations

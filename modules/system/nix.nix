@@ -32,7 +32,7 @@ with lib;
     programs.command-not-found.enable = false;  # Avoid conflict with nix-index
 
     environment.systemPackages = with pkgs; [ 
-      nixfmt 
+      nixfmt-classic 
       nil 
     ];
 

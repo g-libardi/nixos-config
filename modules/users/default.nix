@@ -30,8 +30,5 @@ with lib;
     users.extraGroups.plugdev.members = [ config.modules.users.defaultUser ];
     users.extraGroups.kvm.members = [ config.modules.users.defaultUser ];
     services.udev.packages = [ pkgs.android-udev-rules ];
-
-    # Auto-enable users when any other module needs user configuration
-    modules.users.enable = mkDefault true;
   };
 } 

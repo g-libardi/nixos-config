@@ -28,7 +28,6 @@ with lib;
     # Disable non-essential services
     services = {
       printing.enable = mkForce false;
-      bluetooth.enable = mkForce false;
     };
     
     # Minimal hardware configuration

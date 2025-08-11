@@ -10,13 +10,8 @@ with lib;
     ./media.nix
   ];
 
-  config = mkIf (config.modules.services.printing ||
-                 config.modules.services.virtualization ||
-                 config.modules.services.docker ||
-                 config.modules.services.media) {
-    # Auto-enable common services
-    modules.services = {
-      media = mkDefault true;
-    };
+  # Set services module defaults
+  config.modules.services = {
+    media = mkDefault true;
   };
 } 

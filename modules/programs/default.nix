@@ -10,13 +10,8 @@ with lib;
     ./terminal.nix
   ];
 
-  config = mkIf (config.modules.programs.development.enable ||
-                 config.modules.programs.nvim.enable ||
-                 config.modules.programs.terminal.enable) {
-    
-    # Auto-enable common programs
-    modules.programs = {
-      terminal.enable = mkDefault true;
-    };
+  # Set programs module defaults
+  config.modules.programs = {
+    terminal.enable = mkDefault true;
   };
 } 

@@ -9,12 +9,8 @@ with lib;
     ./secure-boot.nix
   ];
 
-  config = mkIf (config.modules.security.firewall.enable ||
-                 config.modules.security.secureboot.enable) {
-    
-    # Auto-enable common security modules
-    modules.security = {
-      firewall.enable = mkDefault true;
-    };
+  # Set security module defaults
+  config.modules.security = {
+    firewall.enable = mkDefault true;
   };
 } 

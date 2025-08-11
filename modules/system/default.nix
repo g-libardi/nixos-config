@@ -12,19 +12,12 @@ with lib;
     ./nix.nix
   ];
 
-  config = mkIf (config.modules.system.boot.enable ||
-                 config.modules.system.networking.enable ||
-                 config.modules.system.locale.enable ||
-                 config.modules.system.shell.enable ||
-                 config.modules.system.nix.enable) {
-    
-    # Enable all system modules by default when any system module is enabled
-    modules.system = {
-      boot.enable = mkDefault true;
-      networking.enable = mkDefault true;
-      locale.enable = mkDefault true;
-      shell.enable = mkDefault true;
-      nix.enable = mkDefault true;
-    };
+  # Set system module defaults outside of conditional config
+  config.modules.system = {
+    boot.enable = mkDefault true;
+    networking.enable = mkDefault true;
+    locale.enable = mkDefault true;
+    shell.enable = mkDefault true;
+    nix.enable = mkDefault true;
   };
 } 
